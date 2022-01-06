@@ -1,0 +1,286 @@
+{
+	"info": {
+		"_postman_id": "a53969f1-5403-4e5c-b920-d56c115b68c0",
+		"name": "mailsac",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Email Messages API",
+			"item": [
+				{
+					"name": "get_messages_count",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Messages count is 1\", function () {\r",
+									"    let responseJson = pm.response.json();\r",
+									"    let messages_count = responseJson.count;\r",
+									"    pm.expect(messages_count).to.equal(1);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Mailsac-Key",
+								"value": "{{mailsac_key}}"
+							}
+						],
+						"url": {
+							"raw": "https://mailsac.com/api/addresses/{{email_address}}/message-count",
+							"protocol": "https",
+							"host": [
+								"mailsac",
+								"com"
+							],
+							"path": [
+								"api",
+								"addresses",
+								"{{email_address}}",
+								"message-count"
+							]
+						},
+						"description": "test"
+					},
+					"response": []
+				},
+				{
+					"name": "get_all_messages",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let responseJson = pm.response.json();",
+									"",
+									"let email_id = responseJson[0]._id;",
+									"",
+									"pm.collectionVariables.set(\"email_id\", email_id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Mailsac-Key",
+								"value": "{{mailsac_key}}"
+							}
+						],
+						"url": {
+							"raw": "https://mailsac.com/api/addresses/{{email_address}}/messages",
+							"protocol": "https",
+							"host": [
+								"mailsac",
+								"com"
+							],
+							"path": [
+								"api",
+								"addresses",
+								"{{email_address}}",
+								"messages"
+							]
+						},
+						"description": "test"
+					},
+					"response": []
+				},
+				{
+					"name": "get_email_message_metadata",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"From Address is correct\", function () {\r",
+									"\r",
+									"    let responseJson = pm.response.json();\r",
+									"    let from_address = responseJson.from[0].address;\r",
+									"    pm.expect(from_address).to.equal(\"tsh.test.qa@gmail.com\")\r",
+									"});\r",
+									"\r",
+									"pm.test(\"To Address is correct\", function () {\r",
+									"\r",
+									"    let responseJson = pm.response.json();\r",
+									"    let from_address = responseJson.to[0].address;\r",
+									"    pm.expect(from_address).to.equal(pm.environment.get(\"email_address\"));\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Mail subject is correct\", function () {\r",
+									"\r",
+									"    let responseJson = pm.response.json();\r",
+									"    let from_address = responseJson.subject;\r",
+									"    pm.expect(from_address).to.equal(\"You have been signed to it newsletter\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Mailsac-Key",
+								"value": "{{mailsac_key}}"
+							}
+						],
+						"url": {
+							"raw": "https://mailsac.com/api/addresses/{{email_address}}/messages/{{email_id}}",
+							"protocol": "https",
+							"host": [
+								"mailsac",
+								"com"
+							],
+							"path": [
+								"api",
+								"addresses",
+								"{{email_address}}",
+								"messages",
+								"{{email_id}}"
+							]
+						},
+						"description": "test"
+					},
+					"response": []
+				},
+				{
+					"name": "get_email_message_html_body",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Message body is not empty\", function () {\r",
+									"\r",
+									"    let responseText = pm.response.text();\r",
+									"    console.log(responseText);\r",
+									"    pm.expect(responseText).is.not.empty;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Mailsac-Key",
+								"value": "{{mailsac_key}}"
+							}
+						],
+						"url": {
+							"raw": "https://mailsac.com/api/body/{{email_address}}/{{email_id}}",
+							"protocol": "https",
+							"host": [
+								"mailsac",
+								"com"
+							],
+							"path": [
+								"api",
+								"body",
+								"{{email_address}}",
+								"{{email_id}}"
+							]
+						},
+						"description": "test"
+					},
+					"response": []
+				},
+				{
+					"name": "delete_all_messages",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Mailsac-Key",
+								"value": "{{mailsac_key}}"
+							}
+						],
+						"url": {
+							"raw": "https://mailsac.com/api/addresses/{{email_address}}/messages/{{email_id}}",
+							"protocol": "https",
+							"host": [
+								"mailsac",
+								"com"
+							],
+							"path": [
+								"api",
+								"addresses",
+								"{{email_address}}",
+								"messages",
+								"{{email_id}}"
+							]
+						},
+						"description": "test"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "email_id",
+			"value": ""
+		}
+	]
+}
