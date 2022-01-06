@@ -12,18 +12,28 @@ namespace TSHNewsletterHomework.Pages
             _driver = driver;
         }
         public IWebElement EmailInput => _driver.FindElement(By.Id("newsletter_email"));
-        IWebElement NameInput => _driver.FindElement(By.Id("newsletter_name"));
-        IWebElement SurnameInput => _driver.FindElement(By.Id("newsletter_surname"));
-        IWebElement NewsletterTypeDropDown => _driver.FindElement(By.Id("newsletter_newsType"));
-        IWebElement NewsletterDropDownITOption => _driver.FindElement(By.XPath(".//li[contains(text(),'IT')]"));
-        IWebElement StartingDateField => _driver.FindElement(By.Id("newsletter_startDate"));
-        IWebElement StartingDateCalendar => _driver.FindElement(By.ClassName("ant-calendar-input"));
-        IWebElement EndingDateField => _driver.FindElement(By.Id("newsletter_endDate"));
-        IWebElement EndingDateCalendar => _driver.FindElement(By.ClassName("ant-calendar-input"));
-        IWebElement FemaleRadioButton => _driver.FindElement(By.XPath("//input[@value='female']"));
-        IWebElement SubmitButton => _driver.FindElement(By.CssSelector("button.ant-btn"));
-        IWebElement AgreementCheckbox => _driver.FindElement(By.Id("newsletter_agreement"));
-        IWebElement OkButton => _driver.FindElement(By.XPath("//div[@class='ant-modal-confirm-btns']/button"));
+        public IWebElement NameInput => _driver.FindElement(By.Id("newsletter_name"));
+        public IWebElement SurnameInput => _driver.FindElement(By.Id("newsletter_surname"));
+        public IWebElement NewsletterTypeDropDown => _driver.FindElement(By.Id("newsletter_newsType"));
+        public IWebElement NewsletterDropDownITOption => _driver.FindElement(By.XPath(".//li[contains(text(),'IT')]"));
+        public IWebElement NewsletterType => _driver.FindElement(By.ClassName("ant-select-selection-selected-value"));
+        public IWebElement StartingDateField => _driver.FindElement(By.Id("newsletter_startDate"));
+        public IWebElement StartingDateCalendar => _driver.FindElement(By.ClassName("ant-calendar-input"));
+        public IWebElement SelectedStartingDateField => _driver.FindElement(By.XPath("//span[@id='newsletter_startDate']/div/input"));
+        public IWebElement EndingDateField => _driver.FindElement(By.Id("newsletter_endDate"));
+        public IWebElement EndingDateCalendar => _driver.FindElement(By.ClassName("ant-calendar-input"));
+        public IWebElement SelectedEndingDateField => _driver.FindElement(By.XPath("//span[@id='newsletter_endDate']/div/input"));
+        public IWebElement FemaleRadioButton => _driver.FindElement(By.XPath("//input[@value='female']"));
+        public IWebElement CheckedSexRadioButton => _driver.FindElement(By.XPath("//span[@class='ant-radio ant-radio-checked']"));
+        public IWebElement SubmitButton => _driver.FindElement(By.CssSelector("button.ant-btn"));
+        public IWebElement AgreementCheckbox => _driver.FindElement(By.Id("newsletter_agreement"));
+        public IWebElement OkButton => _driver.FindElement(By.XPath("//div[@class='ant-modal-confirm-btns']/button"));
+        public IWebElement EmailRequiredField => _driver.FindElement(By.XPath("//div[@class='ant-form-explain' and contains(text(),'E-mail')] "));
+        public IWebElement NameRequiredField => _driver.FindElement(By.XPath("//div[@class='ant-form-explain' and contains(text(),'First name')] "));
+        public IWebElement SurnameRequiredField => _driver.FindElement(By.XPath("//div[@class='ant-form-explain' and contains(text(),'Surname')] "));
+        public IWebElement NewsletterTypeRequiredField => _driver.FindElement(By.XPath("//div[@class='ant-form-explain' and contains(text(),'newsletter type')] "));
+        public IWebElement StartingDateRequiredField => _driver.FindElement(By.XPath("//div[@class='ant-form-explain' and contains(text(),'Start date')] "));
+        public IWebElement AgreementRequiredField => _driver.FindElement(By.XPath("//div[@class='ant-form-explain' and contains(text(),'terms and condition')] "));
 
         public MainPage TypeEmailAddress(string emailAddress)
         {
@@ -31,7 +41,7 @@ namespace TSHNewsletterHomework.Pages
             return this;
         }
 
-        public MainPage TypeFirtName(string firstname)
+        public MainPage TypeFirstName(string firstname)
         {
             NameInput.SendKeys(firstname);
             return this;
@@ -81,7 +91,6 @@ namespace TSHNewsletterHomework.Pages
         public MainPage SubmitForm()
         {
             SubmitButton.Click();
-            OkButton.Click();
             Thread.Sleep(2000);
             return this;
         }

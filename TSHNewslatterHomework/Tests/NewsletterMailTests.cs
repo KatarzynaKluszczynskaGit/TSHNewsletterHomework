@@ -19,7 +19,7 @@ namespace TSHNewsletterHomework
             MainPage mainPage = new MainPage(driver);
 
             mainPage.TypeEmailAddress(mailSacConfig.EmailAddress)
-                .TypeFirtName("Katarzyna")
+                .TypeFirstName("Katarzyna")
                 .TypeSurname("Kluszczynska")
                 .ChooseNewsletterType()
                 .ChooseStartingDate(startDate)
