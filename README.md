@@ -15,7 +15,7 @@ Project is created with:
 * VS 2019
 	
 ## Setup
-To run those tests locally:
+**To run tests locally in VS:**
 
 
 * Clone git repository git clone https://github.com/KatarzynaKluszczynskaGit/TSHNewsletterHomework.git
@@ -27,3 +27,10 @@ To run those tests locally:
 * Run tests in Test Explorer <br/>
 ![image](https://user-images.githubusercontent.com/80790156/148475059-06107921-ff89-4235-83dc-5074730b6b4a.png)
 
+**To run api tests in postman:**
+
+* Import postman collection and environment from mailsac_postman_collection folder <br>
+![image](https://user-images.githubusercontent.com/80790156/148476808-444d6d46-e402-4a27-9bf3-383b801b7847.png)
+* Run postman collection
+![image](https://user-images.githubusercontent.com/80790156/148476911-a99df904-4cdc-40f7-b3c3-92709d83c479.png) <br>
+Ensure at least 1 mail is sent to tshnewsletteremail@mailsac.com inbox (in other case all tests will fail)
