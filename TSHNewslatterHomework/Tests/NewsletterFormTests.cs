@@ -12,6 +12,12 @@ namespace TSHNewsletterHomework.Tests
     [TestFixture]
     public class NewsletterFormTests : BaseTest
     {
+        [SetUp]
+        public void Setup()
+        {
+            driver.Navigate().Refresh();
+        }
+
         [Test]
         public void Should_Fill_Up_Email_Field()
         {
@@ -126,7 +132,7 @@ namespace TSHNewsletterHomework.Tests
             MainPage mainPage = new MainPage(driver);
 
             //Act
-            mainPage.SubmitForm();
+            mainPage.SubmitButton.Click();
 
             //Asserts
             GenericMethods.ElementIsVisible(mainPage.EmailRequiredField).Should().BeTrue();

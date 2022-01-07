@@ -91,7 +91,8 @@ namespace TSHNewsletterHomework.Pages
         public MainPage SubmitForm()
         {
             SubmitButton.Click();
-            Thread.Sleep(2000);
+            OkButton.Click()
+;           Thread.Sleep(2000);
             return this;
         }
 
