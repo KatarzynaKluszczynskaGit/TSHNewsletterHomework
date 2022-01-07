@@ -4,7 +4,7 @@
 * [Setup](#setup)
 
 ## General info
-Newsletter mail tests created as a part of recrutation.
+Newsletter mail tests created as a part of recruitment process.
 	
 ## Technologies and tools
 Project is created with:
