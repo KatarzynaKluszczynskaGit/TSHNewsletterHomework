@@ -21,7 +21,7 @@ To run those tests locally:
 Clone git repository git clone https://github.com/KatarzynaKluszczynskaGit/TSHNewsletterHomework.git
 open solution in VS
 Restore nuget packages 
-![Przechwytywanie](https://user-images.githubusercontent.com/80790156/148474848-3c72f11b-d270-4934-9a9e-ff5f201054bf.PNG)
+![image](https://user-images.githubusercontent.com/80790156/148475495-c7eb9048-1ef4-4831-9cdb-78b6ae97c606.png)
 Rebuild solution
 ![image](https://user-images.githubusercontent.com/80790156/148474915-55e252b3-d174-40f6-a25b-fb29cde42b0e.png)
 Run tests in Test Explorer
