@@ -13,6 +13,7 @@ Project is created with:
 * NUnit 3.12.0
 * Restsharp 106.15.0
 * VS 2019
+* Postman 9.7.1
 	
 ## Setup
 **To run tests locally in VS:**
